@@ -6,4 +6,7 @@ import { Component } from '@angular/core';
 })
 export class SearchBoxComponent {
 
+  searchTag ( newTag: string ){
+    console.log({newTag})
+  }
 }
