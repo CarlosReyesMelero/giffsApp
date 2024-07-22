@@ -13,8 +13,8 @@ import { HomePageComponent } from './gifs/pages/home/home-page.component';
     AppComponent
   ],
   imports: [
-    BrowserModule,
     // AppRoutingModule,
+    BrowserModule,
     GifsModule,
     SharedModule,
   ],
