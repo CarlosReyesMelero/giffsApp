@@ -27,7 +27,12 @@ export class GifsService {
     }
 
     this._tagsHistory.unshift(tag);
-    this._tagsHistory = this._tagsHistory.splice(0,10);
+    this._tagsHistory = this._tagsHistory.splice(0,20);
+    this.saveLocalStorage();
+  }
+
+  private saveLocalStorage():void {
+    localStorage.setItem('history', JSON.stringify(this._tagsHistory));
   }
 
   searchTag(tag: string): void {
@@ -38,20 +43,13 @@ export class GifsService {
 
     const params = new HttpParams()
       .set('api_key', this.apiKey)
-      .set('limit', '10')
+      .set('limit', '40')
       .set('q', tag)
 
     this.http.get<SearchResponse>(`${this.serviceUrl}/search`, { params })
       .subscribe( (resp) => {
 
-        this.gifList = resp.data
-
+        this.gifList = resp.data;
     });
-
-    // fetch('https://api.giphy.com/v1/gifs/search?api_key=Pog0qsXNZ4t7DGfRDN0Kq9MapRCYvNjq&q=valorant&limit=10')
-    //   .then( resp => resp.json())
-    //   .then( data => console.log(data));
-
-    // this._tagsHistory.unshift(tag);
   }
 }
